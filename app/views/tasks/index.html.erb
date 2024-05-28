@@ -1,0 +1,22 @@
+<h1 class="h1">Tasks</h1>
+
+<ul class="list-group">
+
+<% @tasks.each do |task| %>
+<li class="list-group-item">
+<% if task.completed == true %>
+☒
+<% else %>
+☐
+<% end %>
+<%= link_to task.title, task_path(task) %>
+<%= link_to "X",
+  task_path(task),
+  data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}
+%>
+</li>
+<% end %>
+<button class="btn btn-primary">
+<%= link_to "Create a new task!", new_task_path %>
+</button>
+</ul>
